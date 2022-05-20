@@ -28,7 +28,7 @@
       }
 
       if (Notification.permission !== "granted") {
-        Notification.requestPermission();
+        await Notification.requestPermission();
       }
       else {
         var title = 'Ei vc tá ai?';

@@ -27,10 +27,15 @@
         });
       }
 
-      var title = 'Ei vc tá ai?';
-      var img = 'images/example.png';
-      var text = 'Volte sempre!';
-      var notification = new Notification(title, {body: text, icon: img});
+      if (Notification.permission !== "granted") {
+        Notification.requestPermission();
+      }
+      else {
+        var title = 'Ei vc tá ai?';
+        var img = 'images/example.png';
+        var text = 'Volte sempre!';
+        var notification = new Notification(title, {body: text, icon: img});
+      }
     </script>
   </body>
 </html>

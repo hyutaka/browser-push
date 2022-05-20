@@ -27,14 +27,22 @@
         });
       }
 
-      if (Notification.permission !== "granted") {
-        await Notification.requestPermission();
-      }
-      else {
+      if (Notification.permission === "granted") {
+        // If it's okay let's create a notification
         var title = 'Ei vc tá ai?';
         var img = 'images/example.png';
         var text = 'Volte sempre!';
         var notification = new Notification(title, {body: text, icon: img});
+      }
+
+      // Otherwise, we need to ask the user for permission
+      else if (Notification.permission !== "denied") {
+        Notification.requestPermission().then(function (permission) {
+          // If the user accepts, let's create a notification
+          if (permission === "granted") {
+            var notification = new Notification("Hi there!");
+          }
+        });
       }
     </script>
   </body>
